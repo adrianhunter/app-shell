@@ -1,0 +1,53 @@
+{
+  "name": "app-shell",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app-shell.js",
+  "scripts": {
+    "test": "browserify -t browserify-livescript tests/core.ls | testling -u",
+    "testold": "npm run build:tests && tape tests/*.js",
+    "build:tests": "browserify -t browserify-livescript tests/core.ls > tests/core.js",
+    "build-wp:tests": "webpack -w --config webpack.test.config.js",
+    "build-wp:lib": "webpack -w --config webpack.config.js",
+    "build-wp:example": "webpack -w --config webpack.example.js",
+    "woo": "echo \"Error: no test specified\" && exit 1",
+    "watch:example": "watch 'npm run build:example' example/src/",
+    "watch:app-shell": "watch 'npm run build:app-shell-old' src/",
+    "build:example": "browserify -t browserify-livescript example/src/example2.ls > example/public/example.js",
+    "build:app-shell-old": "browserify -t browserify-livescript src/app-shell.ls > lib/app-shell.js",
+    "build:app-shell": "lsc --output lib/ -c src/app-shell.ls src/hyper-utils.ls src/worker.ls src/moon-classes.ls src/log-service.ls",
+    "webp": "webpack -w --config webpack.demo.config.js",
+    "wizard": "browserify -t browserify-livescript",
+    "signal": "signalhub listen -p 1337",
+    "new:watch": "lsc --compile --watch --const src/app-shell.ls"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify-hmr": "^0.3.1",
+    "browserify-livescript": "^0.2.3",
+    "json-loader": "^0.5.4",
+    "livescript-loader": "^0.1.5",
+    "transform-loader": "^0.2.3",
+    "brfs": "^1.4.3",
+    "webpack": "^1.13.1",
+    "tape": "^4.5.1"
+  },
+  "dependencies": {
+    "chloride": "^2.1.1",
+    "end-of-stream": "^1.1.0",
+    "events": "^1.1.0",
+    "hypercore": "^4.2.5",
+    "hyperlog": "^4.10.0",
+    "hyperlog-sodium": "^2.0.0",
+    "level-browserify": "^1.1.0",
+    "ordered-queue": "^0.2.0",
+    "paralleljs": "^0.2.1",
+    "signalhub": "^4.4.0",
+    "split2": "^2.1.0",
+    "through2": "^2.0.1",
+    "webrtc-swarm": "^2.4.0",
+    "webworkify": "^1.2.1",
+    "wrtc": "0.0.60"
+  }
+}
